@@ -29,7 +29,7 @@ export default function Home() {
   const [modalOpen, setModalOpen] = useState<ModalOpen>({isOpen:true, type:"beginning"})
 
 
-  const fetchWord = async () => {
+  const fetchWord = () => {
     try {
       // const response : Response = await fetch("/api");
       // const data = await response.json();

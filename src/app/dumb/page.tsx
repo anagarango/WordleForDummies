@@ -6,7 +6,7 @@ export default function Home() {
 
   const fetchWord = async () => {
     try {
-      const response = await fetch("/api", {
+      const response = await fetch("https://wordlefordummies.vercel.app/api", {
         cache: "no-store" // Ensures the response is not cached
       });
       const data = await response.json();
