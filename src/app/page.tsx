@@ -45,7 +45,6 @@ export default function Home() {
 
 
   const addLetter = (e:any) => {
-    console.log(answerWord)
     var currentWord : string = e.target.innerText
 
     if(currentWord.length == 1 && wordList[currentRow].word.length < 5){
@@ -172,7 +171,6 @@ export default function Home() {
       <div style={{display:"flex"}}>
         <Image src="/wordle.gif" alt="wordle for dummies of gif" width={25} height={25}/>
         <h2 style={{textAlign:"center", paddingLeft:"10px"}}>Wordle for Dummies</h2>
-        <button onClick={()=>fetchWord()}>{answerWord}</button>
       </div>
       
       <div className="keyboardSection puzzleSection">

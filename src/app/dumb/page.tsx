@@ -2,13 +2,13 @@
 import { useEffect, useState } from "react";
 
 export default function Dumb() {
-  // const [answerWord, setAnswerWord] = useState<string>("");
+  const [answerWord, setAnswerWord] = useState<string>("");
 
   const fetchWord = async () => {
     try {
       const response = await fetch("/api");
       const data = await response.json();
-      // setAnswerWord(data.word.toUpperCase());
+      setAnswerWord(data.word.toUpperCase());
       console.log(data);
     } catch (error) {
       console.error('Error fetching the word:', error);
@@ -21,8 +21,7 @@ export default function Dumb() {
 
   return (
     <main className="main">
-      {/* <button onClick={() => fetchWord()}>{answerWord}</button> */}
-      <h2>Hello</h2>
+      <button onClick={() => fetchWord()}>{answerWord}</button>
     </main>
   );
 }
