@@ -27,6 +27,7 @@ export default function Home() {
   const [alphabet, setAlphabet] = useState<Alphabet[][]>([[{letter:"Q", colour:""}, {letter:"W", colour:""}, {letter:"E", colour:""}, {letter:"R", colour:""}, {letter:"T", colour:""}, {letter:"Y", colour:""}, {letter:"U", colour:""}, {letter:"I", colour:""}, {letter:"O", colour:""}, {letter:"P", colour:""}], [{letter:"A", colour:""}, {letter:"S", colour:""}, {letter:"D", colour:""}, {letter:"F", colour:""}, {letter:"G", colour:""}, {letter:"H", colour:""}, {letter:"J", colour:""}, {letter:"K", colour:""}, {letter:"L", colour:""}], [{letter:"Z", colour:""}, {letter:"X", colour:""}, {letter:"C", colour:""}, {letter:"V", colour:""}, {letter:"B", colour:""}, {letter:"N", colour:""}, {letter:"M", colour:""}]])
   const [currentRow, setCurrentRow] = useState<number>(0)
   const [modalOpen, setModalOpen] = useState<ModalOpen>({isOpen:true, type:"beginning"})
+  const [number, setNumber] = useState(0)
 
 
   const fetchWord = async () => {
@@ -201,6 +202,7 @@ export default function Home() {
           <div className="keyboardLetter delEnt" style={{backgroundColor:"white", fontSize:"0.9rem"}}>ENT</div>
         </div>
       </div>
+      <button onClick={()=>setNumber(Math.floor(Math.random() * 100))}>{number}</button>
 
       <Modal isCentered={true} onClose={(() => setModalOpen({...modalOpen, isOpen: false }))} isOpen={modalOpen.isOpen}>
         <ModalOverlay />
