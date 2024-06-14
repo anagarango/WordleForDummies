@@ -228,14 +228,16 @@ export default function Home() {
               <ModalHeader>{modalOpen.type == "lose" ? "You Lose" : "You Win!"}</ModalHeader>
               
               <ModalBody>
-                {modalOpen.type == "lose" && <Box display="flex" flexDirection="column" alignItems="center">
-                  <h6>The Word was</h6>
-                  <h4 style={{margin:"10px 0",fontSize:"24px"}}>{answerWord}</h4>
-                </Box>}
+                {modalOpen.type == "lose" && 
+                  <Box display="flex" flexDirection="column" alignItems="center">
+                    <h6>The Word was</h6>
+                    <h4 style={{margin:"10px 0",fontSize:"24px"}}>{answerWord}</h4>
+                  </Box>
+                }
                 <Button style={{margin:"20px 0", fontSize:"14px"}} onClick={()=>{
                   fetchWord();
                   setWordList([{word:"", colour:[]}, {word:"", colour:[]}, {word:"", colour:[]}, {word:"", colour:[]}, {word:"", colour:[]}, {word:"", colour:[]}]);
-                  setAlphabet([[{letter:"Q", colour:""}, {letter:"W", colour:""}, {letter:"E", colour:""}, {letter:"R", colour:""}, {letter:"T", colour:""}, {letter:"Y", colour:""}, {letter:"U", colour:""}, {letter:"I", colour:""}, {letter:"O", colour:""}, {letter:"P", colour:""}], [{letter:"A", colour:""}, {letter:"S", colour:""}, {letter:"D", colour:""}, {letter:"F", colour:""}, {letter:"G", colour:""}, {letter:"H", colour:""}, {letter:"J", colour:""}, {letter:"K", colour:""}, {letter:"L", colour:""}], [{letter:"DEL", colour:""}, {letter:"Z", colour:""}, {letter:"X", colour:""}, {letter:"C", colour:""}, {letter:"V", colour:""}, {letter:"B", colour:""}, {letter:"N", colour:""}, {letter:"M", colour:""}, {letter:"ENT", colour:""}]]);
+                  setAlphabet([[{letter:"Q", colour:""}, {letter:"W", colour:""}, {letter:"E", colour:""}, {letter:"R", colour:""}, {letter:"T", colour:""}, {letter:"Y", colour:""}, {letter:"U", colour:""}, {letter:"I", colour:""}, {letter:"O", colour:""}, {letter:"P", colour:""}], [{letter:"A", colour:""}, {letter:"S", colour:""}, {letter:"D", colour:""}, {letter:"F", colour:""}, {letter:"G", colour:""}, {letter:"H", colour:""}, {letter:"J", colour:""}, {letter:"K", colour:""}, {letter:"L", colour:""}], [{letter:"Z", colour:""}, {letter:"X", colour:""}, {letter:"C", colour:""}, {letter:"V", colour:""}, {letter:"B", colour:""}, {letter:"N", colour:""}, {letter:"M", colour:""}]]);
                   setCurrentRow(0);
                   setModalOpen({...modalOpen, isOpen: false})
                 }}>Play New Word</Button>
