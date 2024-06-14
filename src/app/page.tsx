@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import { useToast, Box, Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton} from '@chakra-ui/react'
+import Image from "next/image";
 
 
 type WordList = {
@@ -23,7 +24,7 @@ export default function Home() {
   const toast = useToast()
   const [answerWord, setAnswerWord] = useState<string>("")
   const [wordList, setWordList] = useState<WordList[]>([{word:"", colour:[]}, {word:"", colour:[]}, {word:"", colour:[]}, {word:"", colour:[]}, {word:"", colour:[]}, {word:"", colour:[]}])
-  const [alphabet, setAlphabet] = useState<Alphabet[][]>([[{letter:"Q", colour:""}, {letter:"W", colour:""}, {letter:"E", colour:""}, {letter:"R", colour:""}, {letter:"T", colour:""}, {letter:"Y", colour:""}, {letter:"U", colour:""}, {letter:"I", colour:""}, {letter:"O", colour:""}, {letter:"P", colour:""}], [{letter:"A", colour:""}, {letter:"S", colour:""}, {letter:"D", colour:""}, {letter:"F", colour:""}, {letter:"G", colour:""}, {letter:"H", colour:""}, {letter:"J", colour:""}, {letter:"K", colour:""}, {letter:"L", colour:""}], [{letter:"DEL", colour:""}, {letter:"Z", colour:""}, {letter:"X", colour:""}, {letter:"C", colour:""}, {letter:"V", colour:""}, {letter:"B", colour:""}, {letter:"N", colour:""}, {letter:"M", colour:""}, {letter:"ENTER", colour:""}]])
+  const [alphabet, setAlphabet] = useState<Alphabet[][]>([[{letter:"Q", colour:""}, {letter:"W", colour:""}, {letter:"E", colour:""}, {letter:"R", colour:""}, {letter:"T", colour:""}, {letter:"Y", colour:""}, {letter:"U", colour:""}, {letter:"I", colour:""}, {letter:"O", colour:""}, {letter:"P", colour:""}], [{letter:"A", colour:""}, {letter:"S", colour:""}, {letter:"D", colour:""}, {letter:"F", colour:""}, {letter:"G", colour:""}, {letter:"H", colour:""}, {letter:"J", colour:""}, {letter:"K", colour:""}, {letter:"L", colour:""}], [{letter:"Z", colour:""}, {letter:"X", colour:""}, {letter:"C", colour:""}, {letter:"V", colour:""}, {letter:"B", colour:""}, {letter:"N", colour:""}, {letter:"M", colour:""}]])
   const [currentRow, setCurrentRow] = useState<number>(0)
   const [modalOpen, setModalOpen] = useState<ModalOpen>({isOpen:true, type:"beginning"})
 
@@ -51,9 +52,21 @@ export default function Home() {
       updateWordList(currentRow, wordList[currentRow].word.slice(0, -1));
     }
 
-    if(currentWord == "ENTER"){
-      submitWord()
-      return
+    if(currentWord == "ENT"){
+      if(wordList[currentRow].word.length < 5){
+        toast({
+          position: 'bottom-right',
+          duration: 3000,
+          isClosable: true,
+          render: () => (
+            <Box color='white' p={3} bg='#EF7547'>
+              <p style={{fontSize:"14px"}}>Word isn't 5 letters</p>
+            </Box>
+          ),
+        })
+      } else {
+        submitWord()
+      }
     }
   }
 
@@ -153,8 +166,12 @@ export default function Home() {
 
   return (
     <main className="main">
-      <h2 style={{textAlign:"center"}}>Wordle for Dummies</h2>
-      <div className="keyboardSection">
+      <div style={{display:"flex"}}>
+        <Image src="/wordle.gif" alt="wordle for dummies of gif" width={25} height={25}/>
+        <h2 style={{textAlign:"center", paddingLeft:"10px"}}>Wordle for Dummies</h2>
+      </div>
+      
+      <div className="keyboardSection puzzleSection">
         {wordList.map((object, index)=>{
           return (
             <div className="wordRow">
@@ -171,15 +188,19 @@ export default function Home() {
      <div className="keyboardSection" onClick={(e)=>addLetter(e)}>
         {alphabet.map((row, rowIndex)=>{
           return (
-            <div key={rowIndex} className="wordRow">
+            <div key={rowIndex} className="wordRow keyboardRow">
               {row.map((letter, letterIndex)=>{
                 return (
-                  <h6 key={letterIndex} className="keyboardLetter" style={{backgroundColor: letter.colour ? letter.colour : "white", fontSize:"0.9rem"}}>{letter.letter}</h6>
+                  <div key={letterIndex} className="keyboardLetter" style={{backgroundColor: letter.colour ? letter.colour : "white", fontSize:"0.9rem"}}>{letter.letter}</div>
                 )
               })}
             </div>
           )
         })}
+        <div className="wordRow keyboardRow delEntRow">
+          <div className="keyboardLetter delEnt" style={{backgroundColor:"white", fontSize:"0.9rem"}}>DEL</div>
+          <div className="keyboardLetter delEnt" style={{backgroundColor:"white", fontSize:"0.9rem"}}>ENT</div>
+        </div>
       </div>
 
       <Modal isCentered={true} onClose={(() => setModalOpen({...modalOpen, isOpen: false }))} isOpen={modalOpen.isOpen}>
@@ -214,7 +235,7 @@ export default function Home() {
                 <Button style={{margin:"20px 0", fontSize:"14px"}} onClick={()=>{
                   fetchWord();
                   setWordList([{word:"", colour:[]}, {word:"", colour:[]}, {word:"", colour:[]}, {word:"", colour:[]}, {word:"", colour:[]}, {word:"", colour:[]}]);
-                  setAlphabet([[{letter:"Q", colour:""}, {letter:"W", colour:""}, {letter:"E", colour:""}, {letter:"R", colour:""}, {letter:"T", colour:""}, {letter:"Y", colour:""}, {letter:"U", colour:""}, {letter:"I", colour:""}, {letter:"O", colour:""}, {letter:"P", colour:""}], [{letter:"A", colour:""}, {letter:"S", colour:""}, {letter:"D", colour:""}, {letter:"F", colour:""}, {letter:"G", colour:""}, {letter:"H", colour:""}, {letter:"J", colour:""}, {letter:"K", colour:""}, {letter:"L", colour:""}], [{letter:"DEL", colour:""}, {letter:"Z", colour:""}, {letter:"X", colour:""}, {letter:"C", colour:""}, {letter:"V", colour:""}, {letter:"B", colour:""}, {letter:"N", colour:""}, {letter:"M", colour:""}, {letter:"ENTER", colour:""}]]);
+                  setAlphabet([[{letter:"Q", colour:""}, {letter:"W", colour:""}, {letter:"E", colour:""}, {letter:"R", colour:""}, {letter:"T", colour:""}, {letter:"Y", colour:""}, {letter:"U", colour:""}, {letter:"I", colour:""}, {letter:"O", colour:""}, {letter:"P", colour:""}], [{letter:"A", colour:""}, {letter:"S", colour:""}, {letter:"D", colour:""}, {letter:"F", colour:""}, {letter:"G", colour:""}, {letter:"H", colour:""}, {letter:"J", colour:""}, {letter:"K", colour:""}, {letter:"L", colour:""}], [{letter:"DEL", colour:""}, {letter:"Z", colour:""}, {letter:"X", colour:""}, {letter:"C", colour:""}, {letter:"V", colour:""}, {letter:"B", colour:""}, {letter:"N", colour:""}, {letter:"M", colour:""}, {letter:"ENT", colour:""}]]);
                   setCurrentRow(0);
                   setModalOpen({...modalOpen, isOpen: false})
                 }}>Play New Word</Button>
