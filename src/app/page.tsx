@@ -34,7 +34,7 @@ export default function Home() {
       const response : Response = await fetch("/api");
       const data = await response.json();
       setAnswerWord(data.word.toUpperCase());
-      console.log(data.word)
+      console.log(data)
     } catch (error) {
       console.error('Error fetching the word:', error);
     }
@@ -161,8 +161,7 @@ export default function Home() {
 
   useEffect(()=>{
     fetchWord()
-  },[])
-  
+  },[])  
 
   return (
     <main className="main">
