@@ -174,7 +174,7 @@ export default function Home() {
             <div key={rowIndex} className="wordRow">
               {row.map((letter, letterIndex)=>{
                 return (
-                  <h6 key={letterIndex} className="keyboardLetter" style={{backgroundColor: letter.colour ? letter.colour : "white", fontSize:"0.75rem"}}>{letter.letter}</h6>
+                  <h6 key={letterIndex} className="keyboardLetter" style={{backgroundColor: letter.colour ? letter.colour : "white", fontSize:"0.9rem"}}>{letter.letter}</h6>
                 )
               })}
             </div>
