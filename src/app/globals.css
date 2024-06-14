@@ -40,9 +40,9 @@ body {
 }
 
 .keyboardLetter {
-  height: 60px;
+  height: 45px;
   text-align: center;
-  padding:20px 15px;
+  padding:15px 5px;
   border-radius: 5px;
   border: 1px solid black;
   cursor: pointer;
