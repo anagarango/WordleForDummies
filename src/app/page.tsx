@@ -169,6 +169,7 @@ export default function Home() {
       <div style={{display:"flex"}}>
         <Image src="/wordle.gif" alt="wordle for dummies of gif" width={25} height={25}/>
         <h2 style={{textAlign:"center", paddingLeft:"10px"}}>Wordle for Dummies</h2>
+        <button onClick={()=>fetchWord()}>{answerWord}</button>
       </div>
       
       <div className="keyboardSection puzzleSection">
@@ -202,7 +203,6 @@ export default function Home() {
           <div className="keyboardLetter delEnt" style={{backgroundColor:"white", fontSize:"0.9rem"}}>ENT</div>
         </div>
       </div>
-      <button onClick={()=>setNumber(Math.floor(Math.random() * 100))}>{number}</button>
 
       <Modal isCentered={true} onClose={(() => setModalOpen({...modalOpen, isOpen: false }))} isOpen={modalOpen.isOpen}>
         <ModalOverlay />
