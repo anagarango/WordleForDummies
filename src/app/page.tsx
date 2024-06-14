@@ -188,9 +188,10 @@ export default function Home() {
           <ModalCloseButton />
           {modalOpen.type == "beginning" && 
             <>
-              <ModalHeader>Rules for Wordle for Dummies</ModalHeader>
+              <ModalHeader>Wordle for Dummies</ModalHeader>
               <ModalBody>
-                <ul style={{padding:"25px", fontSize:"13px"}}>
+                <h4>Rules:</h4>
+                <ul style={{padding:"5px 25px 25px 25px", fontSize:"13px"}}>
                   <li style={{padding:"10px 0"}}>Each guess must be a valid five-letter word.</li>
                   <li style={{padding:"10px 0"}}>The color of a tile will change to show you how close your guess is.</li>
                   <li style={{padding:"10px 0"}}>If the tile turns <span style={{color:"#8BB47B"}}>green</span>, the letter is in the word, and it is in the correct spot.</li>
