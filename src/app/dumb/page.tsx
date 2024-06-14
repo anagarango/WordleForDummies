@@ -1,14 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function Dumb() {
   const [answerWord, setAnswerWord] = useState<string>("");
 
   const fetchWord = async () => {
     try {
-      const response = await fetch("https://wordlefordummies.vercel.app/api", {
-        cache: "no-store" // Ensures the response is not cached
-      });
+      const response = await fetch("/api");
       const data = await response.json();
       setAnswerWord(data.word.toUpperCase());
       console.log(data);
